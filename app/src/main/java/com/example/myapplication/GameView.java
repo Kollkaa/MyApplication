@@ -46,20 +46,20 @@ public class GameView extends SurfaceView implements Runnable{
     private long lastTime = System.currentTimeMillis();
 
     public void setPresed(boolean presed,long nowTime ){
-        this.presed = presed;
-
-        if(presed)
-        {if (nowTime-lastTime>=0.1) {
-            Rocket rocket = new Rocket(getContext(),ship.x,ship.y);
-            rockets.add(rocket);
-            lastTime=nowTime;
-                   }
-          else
-          {
-              System.out.print("Time left"+String.valueOf(0.1-nowTime));
-          }
-       }
-
+        try {
+            this.presed = presed;
+            if (presed) {
+                if (nowTime - lastTime >= 0.1) {
+                    Rocket rocket = new Rocket(getContext(), ship.x, ship.y);
+                    rockets.add(rocket);
+                    lastTime = nowTime;
+                } else {
+                    System.out.print("Time left" + String.valueOf(0.1 - nowTime));
+                }
+            }
+        }
+        catch (Exception e)
+        {Log.d("MyLog",e.getMessage());}
     }
 
     private boolean presed;
@@ -119,33 +119,31 @@ public class GameView extends SurfaceView implements Runnable{
         }    }
 
     private void draw() {
-       try {
+
            if (surfaceHolder.getSurface().isValid()) {  //проверяем валидный ли surface
 
-               if(firstTime){ // инициализация при первом запуске
+               if (firstTime) { // инициализация при первом запуске
                    firstTime = false;
-                   unitW = surfaceHolder.getSurfaceFrame().width()/maxX; // вычисляем число пикселей в юните
-                   unitH = surfaceHolder.getSurfaceFrame().height()/maxY;
-
+                   unitW = surfaceHolder.getSurfaceFrame().width() / maxX; // вычисляем число пикселей в юните
+                   unitH = surfaceHolder.getSurfaceFrame().height() / maxY;
                    ship = new Ship(getContext()); // добавляем корабль
                }
-
                canvas = surfaceHolder.lockCanvas(); // закрываем canvas
                canvas.drawColor(Color.BLACK); // заполняем фон чёрным
-
                ship.drow(paint, canvas); // рисуем корабль
-
-               for(Asteroid asteroid: asteroids){ // рисуем астероиды
+               for (Asteroid asteroid : asteroids) { // рисуем астероиды
                    asteroid.drow(paint, canvas);
                }
-               for(Rocket rocket :rockets) //рисуем ракету
-               {rocket.drow(paint, canvas); }
+               try {
+                   for (Rocket rocket : rockets) //рисуем ракету
+                   {
+                       rocket.drow(paint, canvas);
+                   }
+               }catch (Exception e)
+               {Log.d("LogGameView","exseption draw rockets");}
 
                surfaceHolder.unlockCanvasAndPost(canvas); // открываем canvas
            }
-       }
-       catch (Exception e)
-       {e.printStackTrace();}
     }
 
     private void control() { // пауза на 17 миллисекунд
@@ -170,19 +168,26 @@ public class GameView extends SurfaceView implements Runnable{
                 // TODO добавить анимацию взрыва
             }
             if(rockets.size()>0)
-            for(Rocket rocket:rockets)
-            {
-                if (rocket.isCollision(asteroid.x,asteroid.y,asteroid.size)) {
-                    destroy_aster.add(asteroid);
-                    destroy_rocket.add(rocket);
-                    scores++;
-                }
-            }
+           try {
+               for(Rocket rocket:rockets)
+               {
+                   if (rocket.isCollision(asteroid.x,asteroid.y,asteroid.size)) {
+                       destroy_aster.add(asteroid);
+                       destroy_rocket.add(rocket);
+                       scores++;
+                   }
+               }
+           }
+           catch (Exception e)
+           {Log.d("LogCheckCollision","Rockets error");}
         }
         for (Asteroid ast:destroy_aster)
         {asteroids.remove(ast);}
         for (Rocket rock:destroy_rocket)
         {asteroids.remove(rock);}
+        destroy_rocket=new ArrayList<>();
+        rockets=new ArrayList<>();
+        destroy_aster=new ArrayList<>();
 
 
     }

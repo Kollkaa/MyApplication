@@ -1,37 +1,36 @@
 package com.example.myapplication;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
 
-import com.example.myapplication.R;
-import com.example.myapplication.SpaceBody;
+import java.util.Random;
 
-public class Rocket extends SpaceBody {
-    private int radius = 2; // радиус
-    private float speed = (float) 0.3; //  скорость
-        public Rocket(Context context, float shipX, float shipY) {
-            bitmapId=R.drawable.rocket;
-            y=shipY;
-            x = shipX - radius;
-            size=radius*1;
-            speed+=5;
+public class Rocket extends SpaceBody{
+  private int radius = 2; // радиус
+  private float minSpeed = (float) 0.1; // минимальная скорость
+  private float maxSpeed = (float) 0.5; // максимальная скорость
 
-            init(context);
-        }
+  public Rocket(Context context,float shipX,float shipY ) {
+    Random random = new Random();
+    int re=random.nextInt(3);
 
-        @Override
-        public void update() {
-            y -= speed;
+      bitmapId=R.drawable.rocket;
+    y=shipY;
+    x = shipX+(float) 2.5;
 
-        }
+      size = radius*1;
 
-    @Override
-    public void drow(Paint paint, Canvas canvas) {
-        super.drow(paint, canvas);
-    }
+    speed = maxSpeed;
 
-    public boolean isCollision(float asteroidX, float asteroidY, float asteroidSize) {
-            return !(((x+size) < asteroidX)||(x > (asteroidX+asteroidSize))||((y+size) < asteroidY)||(y > (asteroidY+asteroidSize)));
-        }
+    init(context);
+  }
+
+  @Override
+  public void update() {
+    y -= speed;
+
+  }
+
+  public boolean isCollision(float shipX, float shipY, float shipSize) {
+    return !(((x+size) < shipX)||(x > (shipX+shipSize))||((y+size) < shipY)||(y > (shipY+shipSize)));
+  }
 }
