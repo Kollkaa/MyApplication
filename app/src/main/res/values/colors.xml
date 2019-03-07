@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#030606</color>
+    <color name="colorPrimaryDark">#91FFDC</color>
+    <color name="colorAccent">#5154C5</color>
+
+    <color name="btn_on_splash">#000099</color>
+    <color name="red_green">#666600</color>
+    <color name="white_blue">#8CEFFD</color>
+    <color name="pink_yellow">#FF6666</color>
+
+<color name="white">#F7FBFA</color>
+    <color name="purple_500">#9C27B0</color>
+    <color name="deep_purple_">#673AB7</color>
+    <color name="indigo_500">#3F51B5</color>
+    <color name="blue_500">#2196F3</color>
+    <color name="cyan_500">#00BCD4</color>
+    <color name="light_blue_500">#03A9F4</color>
+</resources>

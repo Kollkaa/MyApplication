@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MenuActivity"
+        android:text="@string/menu">
+
+    <RelativeLayout
+        android:id="@+id/relative_lay_menu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/animation_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/help_menu"
+                style="@android:style/Widget.Button"
+                android:layout_width="192dp"
+                android:layout_height="59dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="95dp"
+                android:layout_marginTop="381dp"
+                android:layout_marginEnd="95dp"
+                android:layout_marginBottom="127dp"
+                android:background="@drawable/splash_btn_grad"
+                android:onClick="onClick"
+                android:text="Підтримка"
+                android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
+                android:textColor="@color/colorPrimary"
+                android:textSize="24sp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/scores_menu"
+                style="@android:style/Widget.Button"
+                android:layout_width="192dp"
+                android:layout_height="59dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="95dp"
+                android:layout_marginTop="240dp"
+                android:layout_marginEnd="95dp"
+                android:layout_marginBottom="268dp"
+                android:background="@drawable/splash_btn_grad"
+                android:onClick="onClick"
+                android:text="Досягнення"
+                android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
+                android:textColor="@color/colorPrimary"
+                android:textSize="24sp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/setting_menu"
+                style="@android:style/Widget.Button"
+                android:layout_width="192dp"
+                android:layout_height="59dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="95dp"
+                android:layout_marginTop="311dp"
+                android:layout_marginEnd="95dp"
+                android:layout_marginBottom="197dp"
+                android:background="@drawable/splash_btn_grad"
+                android:onClick="onClick"
+                android:text="Налаштування"
+                android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
+                android:textColor="@color/colorPrimary"
+                android:textSize="24sp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/game_menu"
+                style="@android:style/Widget.Button"
+                android:layout_width="192dp"
+                android:layout_height="59dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/splash_btn_grad"
+                android:ellipsize="start"
+                android:onClick="onClick"
+                android:text="Грати"
+                android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
+                android:textColor="@color/colorPrimary"
+                android:textSize="24sp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@+id/scores_menu"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.979"
+                tools:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="151dp"
+                android:layout_marginTop="71dp"
+                android:layout_marginEnd="151dp"
+                android:layout_marginBottom="116dp"
+                android:text="Меню"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toTopOf="@+id/game_menu"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

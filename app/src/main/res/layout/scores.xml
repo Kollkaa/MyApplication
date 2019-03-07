@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:text="@string/scrores"
+    tools:context=".ScoresActivity">
+
+    <RelativeLayout
+        android:id="@+id/relative_lay_scores"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/animation_background"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableLayout
+                android:id="@+id/tableloyught"
+                android:layout_width="340dp"
+                android:layout_height="302dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="192dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="34dp"
+                app:layout_constraintBottom_toTopOf="@+id/menu_scores"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+                <TableRow >
+
+                    <TextView
+                        android:id="@+id/col1"
+                        android:layout_width="39dp"
+                        android:text=" #"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/col2"
+                        android:layout_width="173dp"
+                        android:text="Гравець"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/col3"
+                        android:layout_width="117dp"
+                        android:text="Досвід"
+                        android:textSize="18sp" />
+                    </TableRow>
+            </TableLayout>
+
+            <TextView
+                android:id="@+id/save_text"
+                android:layout_width="116dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="36dp"
+                android:layout_marginBottom="24dp"
+                app:layout_constraintBottom_toTopOf="@+id/tableloyught"
+                app:layout_constraintEnd_toStartOf="@+id/open_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_scores" />
+
+            <TextView
+                android:id="@+id/open_text"
+                android:layout_width="116dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="212dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="25dp"
+                app:layout_constraintBottom_toTopOf="@+id/tableloyught"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_scores" />
+
+
+
+            <Button
+                android:id="@+id/menu_scores"
+                android:layout_width="195dp"
+                android:layout_height="59dp"
+                android:layout_marginTop="652dp"
+                android:layout_marginBottom="63dp"
+                android:background="@drawable/splash_btn_grad"
+                android:onClick="onClick"
+                android:text="Назад"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <TextView
+                android:id="@+id/text_scores"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="151dp"
+                android:layout_marginTop="76dp"
+                android:layout_marginEnd="151dp"
+                android:layout_marginBottom="98dp"
+                android:text="Досягнення"
+                android:textSize="36sp"
+                app:layout_constraintBottom_toTopOf="@+id/tableloyught"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+
+    </RelativeLayout>
+
+
+</android.support.constraint.ConstraintLayout>

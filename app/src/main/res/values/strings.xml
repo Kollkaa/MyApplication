@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">☺►♫</string>
+    <string name="game">GameStart</string>
+    <string name="gamefirstexr">First exercise</string>
+    <string name="help">Help</string>
+    <string name="menu">Menu</string>
+    <string name="scrores">Scores</string>
+    <string name="settings">Setting</string>
+    <string name="splash">Splash</string>
+    <string name="menu1">For menu</string>
+    <string name="enter">Enter with</string>
+    <string name="text_helps">Більше інформації ви можете знайти \nперейшовши на сайт </string>
+    <string name="hyper_adress"><a href="http://www.google.com\">Google\</a> </string>
+
+    <array name="array_setting">
+        <item>sizes</item>
+        <item>types</item>
+        <item>op</item>
+    </array>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+</resources>
