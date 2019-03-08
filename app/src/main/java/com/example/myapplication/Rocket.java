@@ -10,7 +10,7 @@ import ADD.MyEventListner;
 import ADD.isColision;
 
 public class Rocket extends SpaceBody{
-  private int radius = 12; // радиус
+  private int radius = 2; // радиус
   private float minSpeed = (float) 0.1; // минимальная скорость
   private float maxSpeed = (float) 0.6; // максимальная скорость
   private List<MyEventListner> myEventListners =new LinkedList<>();

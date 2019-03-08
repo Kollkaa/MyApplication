@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.myapplication"
-    android:versionName="1.0"
-    android:revisionCode="1">
-    <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="28" />
+    package="com.example.myapplication">
+
 
     <application
         android:allowBackup="true"

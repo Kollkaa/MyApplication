@@ -21,14 +21,14 @@ public class GameFirstExrActivity extends AppCompatActivity implements View.OnTo
     public static boolean isRightPressed = false; // нажата правая кнопка
     int scores=0;
     GameView gameView;
-    TextView text_scores;
+    TextView text_score;
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.game_first_exr);
         gameView= new GameView(this); // создаём gameView
-        text_scores=(TextView)findViewById(R.id.text_scores);
+        text_score=(TextView)findViewById(R.id.text_score);
         gameView.addEvenListner(new MyEventListner() {
             @Override
             public void processEvent(isColision event) {
@@ -43,15 +43,18 @@ public class GameFirstExrActivity extends AppCompatActivity implements View.OnTo
                         args.putString("name", "kolia");
                         args.putInt("scores",scores);
                         dialog.setArguments(args);
-                        dialog.show(getSupportFragmentManager(), "custom");
+                        try {
+                                       dialog.show(getSupportFragmentManager(), "custom");
+                        }
+                            catch (Exception e){Log.d("Dialog","error");}
                         break;
-                    case RocketKillAsteroid:
-                    {Log.d("Rocket","kill Asteroid");}
+                    case RocketKillAsteroid: {
+                        Log.d("Rocket", "kill Asteroid");
                         scores++;
-                        text_scores.setText("Досвід: "+scores);
-                        text_scores.invalidate();
-                        text_scores.requestLayout();
-                        text_scores.setText("Досвід: "+scores);
+                        text_score.setText("Досвід: " + scores);
+                        text_score.invalidate();
+                        text_score.requestLayout();
+                    }
                         break;
                     default:
                         break;
@@ -76,7 +79,7 @@ public class GameFirstExrActivity extends AppCompatActivity implements View.OnTo
     }
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-
+        text_score.setText("Досвід: "+scores);
         final Toast toast = Toast.makeText(getApplicationContext(), String.valueOf(scores), Toast.LENGTH_SHORT);
         toast.show();
         Handler handler = new Handler();
@@ -87,9 +90,6 @@ public class GameFirstExrActivity extends AppCompatActivity implements View.OnTo
             }
         }, 500);
         return super.dispatchTouchEvent(ev);
-    }
-    public void setText_scores(){
-        text_scores.setText("Досвід: "+scores);
     }
 
     public boolean onTouch(View button, MotionEvent motion) {
