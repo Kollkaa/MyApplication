@@ -12,6 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import ADD.CustomDialogFragment;
+import ADD.MyEventListner;
+import ADD.isColision;
 
 public class GameFirstExrActivity extends AppCompatActivity implements View.OnTouchListener, View.OnClickListener {
     public static boolean isLeftPressed = false; // нажата левая кнопка
@@ -34,7 +36,19 @@ text_scores=(TextView)findViewById(R.id.text_scores);
         leftButton.setOnTouchListener(this); // и добавляем этот класс как слушателя (при нажатии сработает onTouch)
         rightButton.setOnTouchListener(this);
         attackButton.setOnTouchListener(this);
+        gameView.addEvenListner(new MyEventListner() {
+            @Override
+            public void processEvent(isColision event) {
+                if(event.getSource()==null||event.getType()==null)
+                {return;}
+                switch (event.getType()){
 
+                }
+            }
+
+
+        });
+        gameView.notifyEvenListner(new isColision(gameView,isColision.Type.RocketColision));
 
     }
     @Override

@@ -5,12 +5,14 @@ import android.content.Context;
 import java.util.Random;
 
 public class Asteroid extends SpaceBody{
-    private int radius = 2; // радиус
+    private int radius = 2;
+    // радиус
     private float minSpeed = (float) 0.1; // минимальная скорость
     private float maxSpeed = (float) 0.5; // максимальная скорость
 
     public Asteroid(Context context) {
-        Random random = new Random();
+          hp=1;
+     Random random = new Random();
 int re=random.nextInt(3);
        if (re>0) {
            switch (re) {
@@ -29,8 +31,10 @@ int re=random.nextInt(3);
         y=0;
         x = random.nextInt(GameView.maxX) - radius;
         int r=random.nextInt(5);
-if(r>0)
-        size = radius*r;
+if(r>0) {
+    size = radius * r;
+    hp=r;
+}
 else
 {size=radius*2;}
         speed = minSpeed + (maxSpeed - minSpeed) * random.nextFloat();

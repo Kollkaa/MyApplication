@@ -22,7 +22,7 @@ public class SpaceBody {
     protected float speed; // скорость
     protected int bitmapId; // id картинки
     protected Bitmap bitmap; // картинка
-
+    protected int hp;
     public void init(Context context) { // сжимаем картинку до нужных размеров
         Bitmap cBitmap = BitmapFactory.decodeResource(context.getResources(), bitmapId);
         bitmap = Bitmap.createScaledBitmap(
