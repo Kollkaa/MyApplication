@@ -2,13 +2,29 @@ package com.example.myapplication;
 
 import android.content.Context;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
+
+import ADD.MyEventListner;
+import ADD.isColision;
 
 public class Asteroid extends SpaceBody{
     private int radius = 2;
     // радиус
     private float minSpeed = (float) 0.1; // минимальная скорость
     private float maxSpeed = (float) 0.5; // максимальная скорость
+    private List<MyEventListner> myEventListners =new LinkedList<>();
+
+
+
+    public void addEvenListner(MyEventListner myEventListner)
+    { myEventListners.add(myEventListner);}
+    public void notifyEvenListner(isColision isColision)
+    {
+        for (MyEventListner myevent: myEventListners)
+        {myevent.processEvent(isColision);}
+    }
 
     public Asteroid(Context context) {
           hp=1;

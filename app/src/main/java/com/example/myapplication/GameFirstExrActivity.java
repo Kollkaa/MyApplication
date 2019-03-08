@@ -4,6 +4,7 @@ package com.example.myapplication;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -18,16 +19,46 @@ import ADD.isColision;
 public class GameFirstExrActivity extends AppCompatActivity implements View.OnTouchListener, View.OnClickListener {
     public static boolean isLeftPressed = false; // нажата левая кнопка
     public static boolean isRightPressed = false; // нажата правая кнопка
-
+    int scores=0;
     GameView gameView;
     TextView text_scores;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.game_first_exr);
         gameView= new GameView(this); // создаём gameView
-text_scores=(TextView)findViewById(R.id.text_scores);
+        text_scores=(TextView)findViewById(R.id.text_scores);
+        gameView.addEvenListner(new MyEventListner() {
+            @Override
+            public void processEvent(isColision event) {
+                if(event.getSource()==null||event.getType()==null)
+                {return;}
+                switch (event.getType())
+                {
+                    case ShipColision:
+                        Log.d("Game","finish");
+                        CustomDialogFragment dialog = new CustomDialogFragment();
+                        Bundle args = new Bundle();
+                        args.putString("name", "kolia");
+                        args.putInt("scores",scores);
+                        dialog.setArguments(args);
+                        dialog.show(getSupportFragmentManager(), "custom");
+                        break;
+                    case RocketKillAsteroid:
+                    {Log.d("Rocket","kill Asteroid");}
+                        scores++;
+                        text_scores.setText("Досвід: "+scores);
+                        text_scores.invalidate();
+                        text_scores.requestLayout();
+                        text_scores.setText("Досвід: "+scores);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+
         RelativeLayout gameLayout = (RelativeLayout) findViewById(R.id.relative_startgame); // находим gameLayout
         gameLayout.addView(gameView); // и добавляем в него gameView
         Button leftButton = (Button) findViewById(R.id.left); // находим кнопки
@@ -36,19 +67,7 @@ text_scores=(TextView)findViewById(R.id.text_scores);
         leftButton.setOnTouchListener(this); // и добавляем этот класс как слушателя (при нажатии сработает onTouch)
         rightButton.setOnTouchListener(this);
         attackButton.setOnTouchListener(this);
-        gameView.addEvenListner(new MyEventListner() {
-            @Override
-            public void processEvent(isColision event) {
-                if(event.getSource()==null||event.getType()==null)
-                {return;}
-                switch (event.getType()){
 
-                }
-            }
-
-
-        });
-        gameView.notifyEvenListner(new isColision(gameView,isColision.Type.RocketColision));
 
     }
     @Override
@@ -57,16 +76,8 @@ text_scores=(TextView)findViewById(R.id.text_scores);
     }
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-      if(!gameView.isGameRunning()) {
-          CustomDialogFragment dialog = new CustomDialogFragment();
-          Bundle args = new Bundle();
-          args.putString("name", "kolia");
-          args.putInt("scores",gameView.getScores());
-          dialog.setArguments(args);
-          dialog.show(getSupportFragmentManager(), "custom");
-      }
-        text_scores.setText("Досвід: "+gameView.getScores());
-        final Toast toast = Toast.makeText(getApplicationContext(), String.valueOf(gameView.getScores()), Toast.LENGTH_SHORT);
+
+        final Toast toast = Toast.makeText(getApplicationContext(), String.valueOf(scores), Toast.LENGTH_SHORT);
         toast.show();
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -76,9 +87,11 @@ text_scores=(TextView)findViewById(R.id.text_scores);
             }
         }, 500);
         return super.dispatchTouchEvent(ev);
-
-
     }
+    public void setText_scores(){
+        text_scores.setText("Досвід: "+scores);
+    }
+
     public boolean onTouch(View button, MotionEvent motion) {
         switch(button.getId()) { // определяем какая кнопка
             case R.id.left:
@@ -102,8 +115,13 @@ text_scores=(TextView)findViewById(R.id.text_scores);
                 }
                 break;
             case R.id.attack:
-                gameView.setPresed(true,System.currentTimeMillis());
+                switch (motion.getAction()) { // определяем нажата или отпущена
+                    case MotionEvent.ACTION_DOWN:
+                        gameView.setPresed();
+                        break;
 
+                }
+                break;
 
         }
         return true;
