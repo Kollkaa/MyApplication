@@ -1,13 +1,12 @@
 package com.example.myapplication;
-
 import android.content.Context;
 
 class Ship extends SpaceBody {
     public Ship(Context context) {
-        bitmapId = R.drawable.ship; // определяем начальные параметры
-        size = 5;
-        x=7;
-        y=GameView.maxY - size+1;
+        bitmapId = R.drawable.player; // определяем начальные параметры
+        size = 15f;
+        x=20f;
+        y=GameView.maxY ;
         speed = (float) 0.4;
 
         init(context); // инициализируем корабль
@@ -15,11 +14,17 @@ class Ship extends SpaceBody {
 
     @Override
     public void update() { // перемещаем корабль в зависимости от нажатой кнопки
-        if(GameFirstExrActivity.isLeftPressed && x >= 0){
-            x -= speed;
+        if(GameFirstExrActivity.mouseClick  ){
+            if(GameFirstExrActivity.mousex>0&&GameFirstExrActivity.mousex<950) {
+                x = x <= 0 ? 0 : x-size/5;
+
+            }
+            if(GameFirstExrActivity.mousex>=550&&GameFirstExrActivity.mousex<=1920) {
+                x = x > 195? 195f : x+size/5;
+
+            }
+
         }
-        if(GameFirstExrActivity.isRightPressed && x <= GameView.maxX - 4){
-            x += speed;
-        }
+
     }
 }

@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MenuActivity"
-    android:text="@string/menu">
+    android:text="@string/menu"
+    android:orientation="horizontal">
 
     <RelativeLayout
         android:id="@+id/relative_lay_menu"

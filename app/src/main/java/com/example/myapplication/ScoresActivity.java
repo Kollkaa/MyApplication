@@ -2,10 +2,14 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.RelativeLayout;
@@ -29,6 +33,7 @@ public class ScoresActivity extends AppCompatActivity implements View.OnClickLis
   private TextView mSelectText;
   RelativeLayout rl;
   TableLayout tl;
+  @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -38,17 +43,20 @@ public class ScoresActivity extends AppCompatActivity implements View.OnClickLis
       String name = "";
       int scores = 0;
       readFile();
+      if (arguments.getInt("activity")==1)
       if (arguments != null) {
-
-
         name = arguments.getString("name");
         scores = arguments.getInt("scores");
         writeFile(arr.size(), name, scores);
-
       }
 
 
       setContentView(R.layout.scores);
+      this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+              WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+      // Set No Title
+      this.requestWindowFeature(Window.FEATURE_NO_TITLE);
       tl = (TableLayout) findViewById(R.id.tableloyught);
       rl = (RelativeLayout) findViewById(R.id.relative_lay_scores);
       AnimationDrawable animationDrawable = (AnimationDrawable) rl.getBackground();
@@ -64,7 +72,8 @@ public class ScoresActivity extends AppCompatActivity implements View.OnClickLis
           Log.d(LOG_TAG, e.getMessage());
         }
       }
-      try {
+
+      if(arguments.getInt("activity")==1)try {
         addRow(tl, String.valueOf(arr.size()), name, String.valueOf(scores));
       }
       catch (Exception e)

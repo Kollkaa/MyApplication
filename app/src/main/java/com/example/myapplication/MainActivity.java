@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Toast;
@@ -16,6 +18,11 @@ Intent intent;
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        // Set No Title
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 
 
@@ -34,6 +41,12 @@ Intent intent;
                         "scores!",
                         Toast.LENGTH_SHORT).show();
                 break;
+            case R.id.gifImageView:
+                intent = new Intent(this, SplashActivity.class);
+                startActivity(intent);
+                Toast.makeText(getApplicationContext(),
+                        "scores!",
+                        Toast.LENGTH_SHORT).show();
             default:
                 break;
         }

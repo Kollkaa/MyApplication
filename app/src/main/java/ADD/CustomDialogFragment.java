@@ -31,19 +31,21 @@ public class CustomDialogFragment extends DialogFragment {
 
 
         final String name = getArguments().getString("name");
+
         final int scores = getArguments().getInt("scores");
         final AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
         return builder
-                .setTitle("Ви програли")
+                .setTitle("Ви програли\n ваш результат "+name+" "+scores)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setMessage("Ви бажаєте переглянути таблицю "+"\n або продовжити"+ "?")
-                .setPositiveButton("Переглянути результати", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Переглянути минулі результати", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         toScores=true;
                         Intent intent = new Intent(getActivity(), ScoresActivity.class);
                         intent.putExtra("name",name);
                                 intent.putExtra("scores",scores);
+                                intent.putExtra("activity",1);
                         startActivity(intent);
                     }
                 })

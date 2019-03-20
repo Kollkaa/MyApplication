@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:text="@string/gamefirstexr"
-    tools:context=".GameFirstExrActivity">
+    tools:context=".GameFirstExrActivity"
+    android:orientation="horizontal">
 
 
     <RelativeLayout
@@ -22,8 +23,8 @@
 
             <RelativeLayout
                 android:id="@+id/relative_startgame"
-                android:layout_width="411dp"
-                android:layout_height="605dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 app:layout_constraintBottom_toTopOf="@+id/relativeLayout2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -40,8 +41,8 @@
 
             <RelativeLayout
                 android:id="@+id/relativeLayout2"
-                android:layout_width="408dp"
-                android:layout_height="146dp"
+                android:layout_width="wrap_content"
+                android:layout_height="140dp"
                 android:layout_marginStart="3dp"
                 android:layout_marginBottom="26dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -65,33 +66,31 @@
                         android:id="@+id/right"
                         android:layout_width="200dp"
                         android:layout_height="47dp"
-                        android:layout_marginStart="239dp"
+                        android:layout_marginStart="32dp"
                         android:layout_marginTop="16dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginBottom="16dp"
+                        android:layout_marginBottom="32dp"
                         android:text="Вправо"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.723"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/left"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.149" />
+                        app:layout_constraintVertical_bias="0.163" />
 
                     <Button
                         android:id="@+id/left"
                         android:layout_width="200dp"
                         android:layout_height="47dp"
-                        android:layout_marginStart="4dp"
                         android:layout_marginTop="16dp"
 
-                        android:layout_marginBottom="16dp"
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginBottom="32dp"
                         android:text="Вліво"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/right"
                         app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.14" />
+                        app:layout_constraintVertical_bias="0.164" />
 
                     <TextView
                         android:id="@+id/text_score"
@@ -117,7 +116,7 @@
                     <Button
                         android:id="@+id/attack"
                         android:layout_width="wrap_content"
-                        android:layout_height="26dp"
+                        android:layout_height="49dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginBottom="8dp"
@@ -125,6 +124,23 @@
                         android:textSize="6sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <Button
+                        android:id="@+id/toGameActivity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="31dp"
+                        android:layout_marginStart="40dp"
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginBottom="1dp"
+                        android:onClick="onClick"
+                        android:text="назад"
+                        android:textSize="8sp"
+                        app:layout_constraintBottom_toTopOf="@+id/left"
+                        app:layout_constraintEnd_toStartOf="@+id/attack"
+                        app:layout_constraintHorizontal_bias="0.06"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.0" />

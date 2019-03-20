@@ -1,16 +1,27 @@
 package com.example.myapplication;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
 
 import ADD.CustomDialogFragment;
 import ADD.MyEventListner;
@@ -19,15 +30,31 @@ import ADD.isColision;
 public class GameFirstExrActivity extends AppCompatActivity implements View.OnTouchListener, View.OnClickListener {
     public static boolean isLeftPressed = false; // нажата левая кнопка
     public static boolean isRightPressed = false; // нажата правая кнопка
-    int scores=0;
+    public  static  boolean mouseClick=false;
+    public  static float mousex=0f;
+    public  static float mousey=0f;
+   private int score=0;
     GameView gameView;
     TextView text_score;
+    int color=1;
+    int complexity=1;
+    final  String  FILENAME = "scores";
+    ArrayList<String> arr=new ArrayList<>();
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        Bundle arguments = getIntent().getExtras();
+            if (arguments != null) {
+            color = arguments.getInt("rocket_color");
+            complexity=arguments.getInt("complexity");
+        }
         setContentView(R.layout.game_first_exr);
-        gameView= new GameView(this); // создаём gameView
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        // Set No Title
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        gameView= new GameView(this,color,complexity); // создаём gameView
         text_score=(TextView)findViewById(R.id.text_score);
         gameView.addEvenListner(new MyEventListner() {
             @Override
@@ -41,19 +68,27 @@ public class GameFirstExrActivity extends AppCompatActivity implements View.OnTo
                         CustomDialogFragment dialog = new CustomDialogFragment();
                         Bundle args = new Bundle();
                         args.putString("name", "kolia");
-                        args.putInt("scores",scores);
+                        args.putInt("scores",score);
+
                         dialog.setArguments(args);
                         try {
                                        dialog.show(getSupportFragmentManager(), "custom");
                         }
+
                             catch (Exception e){Log.d("Dialog","error");}
+                        try {
+                            Thread.sleep(2000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        readFile();
+                        writeFile(arr.size(), "kolia", score);
+
                         break;
                     case RocketKillAsteroid: {
                         Log.d("Rocket", "kill Asteroid");
-                        scores++;
-                        text_score.setText("Досвід: " + scores);
-                        text_score.invalidate();
-                        text_score.requestLayout();
+                        score++;
+
                     }
                         break;
                     default:
@@ -75,12 +110,29 @@ public class GameFirstExrActivity extends AppCompatActivity implements View.OnTo
     }
     @Override
     public void onClick(View v) {
-
+      if(v.getId()==R.id.toGameActivity) {
+          Intent intent = new Intent(this, GameActivity.class);
+          startActivity(intent);
+          this.finish();
+      }
     }
+
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        text_score.setText("Досвід: "+scores);
-        final Toast toast = Toast.makeText(getApplicationContext(), String.valueOf(scores), Toast.LENGTH_SHORT);
+
+
+        switch (ev.getAction()) { // определяем нажата или отпущена
+            case MotionEvent.ACTION_DOWN:
+                mouseClick = true;
+                mousex=ev.getX();
+                Log.d("mouse",String.valueOf(mousex));
+                mousey=ev.getY();
+                break;
+            case MotionEvent.ACTION_UP:
+                mouseClick = false;
+                break;
+        }
+        final Toast toast = Toast.makeText(getApplicationContext(), String.valueOf(score), Toast.LENGTH_SHORT);
         toast.show();
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -93,6 +145,7 @@ public class GameFirstExrActivity extends AppCompatActivity implements View.OnTo
     }
 
     public boolean onTouch(View button, MotionEvent motion) {
+
         switch(button.getId()) { // определяем какая кнопка
             case R.id.left:
                 switch (motion.getAction()) { // определяем нажата или отпущена
@@ -123,8 +176,46 @@ public class GameFirstExrActivity extends AppCompatActivity implements View.OnTo
                 }
                 break;
 
+
         }
         return true;
     }
 
+    void writeFile(int number,String name,int scores) {
+        try {
+            // отрываем поток для записи
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
+                    openFileOutput(FILENAME, MODE_APPEND)));
+            // пишем данные
+
+            bw.append("\n"+number+" "+name+" "+scores);
+            bw.flush();
+            // закрываем поток
+            bw.close();
+            Log.d("my log", "Файл записан");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    void readFile() {
+        try {
+            arr=new ArrayList<>();
+            // открываем поток для чтения
+            BufferedReader br = new BufferedReader(new InputStreamReader(
+                    openFileInput(FILENAME)));
+            String str = "";
+            // читаем содержимое
+            while ((str = br.readLine()) != null) {
+                arr.add(str);
+                Log.d("my log", str);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

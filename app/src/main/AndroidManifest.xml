@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.myapplication">
 
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -9,24 +10,38 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:screenOrientation="landscape"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".ChibiActivity"></activity>
         <activity android:name=".MainActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SplashActivity" />
-        <activity android:name=".GameActivity"></activity>
-        <activity android:name=".HelpActivity"></activity>
-        <activity android:name=".MenuActivity"></activity>
-        <activity android:name=".ScoresActivity"></activity>
-        <activity android:name=".SettingActivity"></activity>
-        <activity android:name=".GameFirstExrActivity"></activity>
+        <activity
+            android:name=".SplashActivity"
+            android:label="ater1312" />
+        <activity
+            android:name=".GameActivity"
+            android:label="Space War" />
+        <activity
+            android:name=".HelpActivity"
+            android:label="Підтримка" />
+        <activity
+            android:name=".MenuActivity"
+            android:label="Меню" />
+        <activity
+            android:name=".ScoresActivity"
+            android:label="Досягнення" />
+        <activity
+            android:name=".SettingActivity"
+            android:label="Налаштування" />
+        <activity
+            android:name=".GameFirstExrActivity"
+            android:label="Space War" />
     </application>
 
 </manifest>

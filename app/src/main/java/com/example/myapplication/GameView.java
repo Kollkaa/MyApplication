@@ -18,8 +18,8 @@ import ADD.MyEventListner;
 import ADD.isColision;
 
 public class GameView extends SurfaceView implements Runnable{
-    public static int maxX = 40; // размер по горизонтали
-    public static int maxY = 56; // размер по вертикали
+    public static int maxX = 200; // размер по горизонтали
+    public static int maxY = 100; // размер по вертикали
     public static float unitW = 0; // пикселей в юните по горизонтали
     public static float unitH = 0; // пикселей в юните по вертикали
     private boolean firstTime = true;
@@ -41,8 +41,8 @@ public class GameView extends SurfaceView implements Runnable{
     private long lastTime = System.currentTimeMillis();
     private boolean presed;
     private List<MyEventListner> myEventListners =new LinkedList<>();
-
-
+    private int rocket_color;
+    private int complexity;
 
     public void addEvenListner(MyEventListner myEventListner)
     { myEventListners.add(myEventListner);}
@@ -51,48 +51,7 @@ public class GameView extends SurfaceView implements Runnable{
         for (MyEventListner myevent: myEventListners)
         {myevent.processEvent(isColision);}
     }
-
-
-
-    public ArrayList<Asteroid> getAsteroids() {
-        return asteroids;
-    }
-    public boolean isGameRunning() {
-        return gameRunning;
-    }
-    public void setPresed(){
-        try {
-
-                    Rocket rocket = new Rocket(getContext(), ship.x, ship.y);
-                    rocket.addEvenListner(new MyEventListner() {
-                        @Override
-                        public void processEvent(isColision event)  {
-                            if(event.getSource()==null||event.getType()==null)
-                            {return;}
-                            switch (event.getType())
-                            {
-                                case RocketColision:
-                                    Log.d("Rocket","destroy");
-                                    break;
-                                default:
-                                    break;
-                            }
-                        }
-                    });
-                    rockets.add(rocket);
-
-
-        }
-        catch (Exception e)
-        {Log.d("MyLog",e.getMessage());}
-    }
-
-
-
-
-    private int scores=0;
-
-    public GameView(Context context) {
+    public GameView(Context context,int rocket_color,int complexity) {
         super(context);
         //инициализируем обьекты для рисования
         surfaceHolder = getHolder();
@@ -100,15 +59,52 @@ public class GameView extends SurfaceView implements Runnable{
         // инициализируем поток
         gameThread = new Thread(this);
         gameThread.start();
-
+        this.rocket_color=rocket_color;
+        this.complexity=complexity;
     }
+    public void setPresed(){
+        try {
+
+            Rocket rocket = new Rocket(getContext(), ship.x, ship.y,rocket_color);
+            rocket.addEvenListner(new MyEventListner() {
+                @Override
+                public void processEvent(isColision event)  {
+                    if(event.getSource()==null||event.getType()==null)
+                    {return;}
+                    switch (event.getType())
+                    {
+                        case RocketColision:
+                            Log.d("Rocket","destroy");
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            });
+            rockets.add(rocket);
+
+
+        }
+        catch (Exception e)
+        {Log.d("MyLog",e.getMessage());}
+    }
+
+    public ArrayList<Asteroid> getAsteroids() {
+        return asteroids;
+    }
+    public boolean isGameRunning() {
+        return gameRunning;
+    }
+
+    private int scores=0;
+
 
     @Override
     public void run() {
         while (gameRunning) {
             update();
-            draw();
             try {
+                draw();
                 checkCollision();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -153,7 +149,13 @@ public class GameView extends SurfaceView implements Runnable{
                    ship = new Ship(getContext()); // добавляем корабль
                }
                canvas = surfaceHolder.lockCanvas(); // закрываем canvas
-               canvas.drawColor(Color.BLACK); // заполняем фон чёрным
+              try {
+                  canvas.drawColor(Color.BLACK); // заполняем фон чёрным
+              }
+              catch (Exception e)
+              {
+
+              }
                ship.drow(paint, canvas); // рисуем корабль
               if(asteroids.size()>0)
                for (Asteroid asteroid : asteroids) { // рисуем астероиды
@@ -223,7 +225,7 @@ public class GameView extends SurfaceView implements Runnable{
     private void checkIfNewAsteroid(){ // каждые 50 итераций добавляем новый астероид
         if(currentTime >= ASTEROID_INTERVAL){
             Random random=new Random();
-            Asteroid asteroid = new Asteroid(getContext());
+            Asteroid asteroid = new Asteroid(getContext(),complexity);
             asteroid.addEvenListner(new MyEventListner() {
                 @Override
                 public void processEvent(isColision event)  {

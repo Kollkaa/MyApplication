@@ -10,10 +10,10 @@ import ADD.MyEventListner;
 import ADD.isColision;
 
 public class Asteroid extends SpaceBody{
-    private int radius = 2;
+    private int radius = 5;
     // радиус
     private float minSpeed = (float) 0.1; // минимальная скорость
-    private float maxSpeed = (float) 0.5; // максимальная скорость
+    private float maxSpeed = (float) radius/2; // максимальная скорость
     private List<MyEventListner> myEventListners =new LinkedList<>();
 
 
@@ -26,9 +26,20 @@ public class Asteroid extends SpaceBody{
         {myevent.processEvent(isColision);}
     }
 
-    public Asteroid(Context context) {
+    public Asteroid(Context context,int complexity) {
           hp=1;
      Random random = new Random();
+     switch (complexity)
+        {
+            case 1:
+                speed=(float) 0.334*3f;
+                break;
+            case 2:
+                speed=(float) 0.543*3f;
+            case 3:
+                speed=(float) 0.7123123*3f;
+                break;
+        }
 int re=random.nextInt(3);
        if (re>0) {
            switch (re) {
@@ -53,7 +64,7 @@ if(r>0) {
 }
 else
 {size=radius*2;}
-        speed = minSpeed + (maxSpeed - minSpeed) * random.nextFloat();
+
 
         init(context);
     }

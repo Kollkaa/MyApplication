@@ -10,9 +10,9 @@ import ADD.MyEventListner;
 import ADD.isColision;
 
 public class Rocket extends SpaceBody{
-  private int radius = 2; // радиус
+  private int radius = 3; // радиус
   private float minSpeed = (float) 0.1; // минимальная скорость
-  private float maxSpeed = (float) 0.6; // максимальная скорость
+  private float maxSpeed = (float) radius/2; // максимальная скорость
   private List<MyEventListner> myEventListners =new LinkedList<>();
 
 
@@ -24,13 +24,23 @@ public class Rocket extends SpaceBody{
     for (MyEventListner myevent: myEventListners)
     {myevent.processEvent(isColision);}
   }
-  public Rocket(Context context,float shipX,float shipY ) {
+  public Rocket(Context context,float shipX,float shipY,int rocket_color ) {
     Random random = new Random();
     int re=random.nextInt(3);
+switch (rocket_color){
+    case 1:
+        bitmapId=R.drawable.lazer;
+        break;
+        case 2:
+                bitmapId=R.drawable.rocket_blue;
+    break ;
+    default:
+        break;
+}
 
-      bitmapId=R.drawable.rocket;
+
     y=shipY;
-    x = shipX+(float) 1.5;
+    x = shipX+7.5f;
 
       size = radius*1;
 

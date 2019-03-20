@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:text="@string/scrores"
-    tools:context=".ScoresActivity">
+    tools:context=".ScoresActivity"
+    android:orientation="horizontal">
 
     <RelativeLayout
         android:id="@+id/relative_lay_scores"
@@ -28,12 +29,10 @@
 
             <ScrollView
                 android:id="@+id/scrollView2"
-                android:layout_width="350dp"
-                android:layout_height="380dp"
+                android:layout_width="594dp"
+                android:layout_height="197dp"
                 android:layout_marginStart="6dp"
-                android:layout_marginTop="8dp"
                 android:layout_marginEnd="6dp"
-                android:layout_marginBottom="10dp"
                 app:layout_constraintBottom_toTopOf="@+id/menu_scores"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -90,8 +89,8 @@
                 android:id="@+id/menu_scores"
                 android:layout_width="195dp"
                 android:layout_height="59dp"
-                android:layout_marginTop="1dp"
-                android:layout_marginBottom="63dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="6dp"
                 android:background="@drawable/splash_btn_grad"
                 android:onClick="onClick"
                 android:text="Назад"
@@ -99,7 +98,7 @@
                 android:textSize="18sp"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintHorizontal_bias="0.501"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
@@ -109,14 +108,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="151dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="151dp"
                 android:layout_marginBottom="8dp"
                 android:text="Досягнення"
                 android:textSize="36sp"
                 app:layout_constraintBottom_toTopOf="@+id/scrollView2"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.534"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
