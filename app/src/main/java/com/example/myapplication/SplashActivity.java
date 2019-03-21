@@ -18,12 +18,13 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.splash);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         // Set No Title
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.splash);
+
     rl=(RelativeLayout)findViewById(R.id.relative_lay_splash);
         AnimationDrawable animationDrawable =(AnimationDrawable)rl.getBackground();
         animationDrawable.setEnterFadeDuration(5000);

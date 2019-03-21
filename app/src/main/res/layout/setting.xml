@@ -7,8 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".SettingActivity"
     android:text="@string/settings"
-    android:orientation="horizontal">
-
+>
     <RelativeLayout
         android:id="@+id/relative_lay_setting"
         android:layout_width="match_parent"

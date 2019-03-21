@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HelpActivity"
-    android:orientation="horizontal">
+    >
 
     <RelativeLayout
         android:id="@+id/relativeLayout_help"

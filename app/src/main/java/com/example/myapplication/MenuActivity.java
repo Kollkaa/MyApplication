@@ -19,12 +19,13 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.menu);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         // Set No Title
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.menu);
+
         rl=(RelativeLayout)findViewById(R.id.relative_lay_menu);
         AnimationDrawable animationDrawable =(AnimationDrawable)rl.getBackground();
         animationDrawable.setEnterFadeDuration(5000);

@@ -31,13 +31,14 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.game_start);
-        re=(Button)findViewById(R.id.start_game);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         // Set No Title
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.game_start);
+        re=(Button)findViewById(R.id.start_game);
+
         rl=(RelativeLayout)findViewById(R.id.relative_lay_game);
 
         AnimationDrawable animationDrawable =(AnimationDrawable)rl.getBackground();
@@ -107,7 +108,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
                 break;
             case R.id.start_game2:
-                 intent = new Intent(this, GameFirstExrActivity.class);
+                 intent = new Intent(this, ChibiActivity.class);
                 intent.putExtra("rocket_color", this.color);
                 intent.putExtra("complexity", this.complexity);
                 startActivity(intent);

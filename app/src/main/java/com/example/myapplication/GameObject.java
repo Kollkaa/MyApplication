@@ -5,18 +5,20 @@ public abstract class GameObject {
 
     protected Bitmap image;
 
-    protected final int rowCount;
-    protected final int colCount;
+    protected int rowCount;
+    protected int colCount;
 
-    protected final int WIDTH;
-    protected final int HEIGHT;
+    protected int WIDTH;
+    protected int HEIGHT;
 
-    protected final int width;
+    protected int width;
 
 
-    protected final int height;
+    protected int height;
     protected int x;
     protected int y;
+
+
 
     public GameObject(Bitmap image, int rowCount, int colCount, int x, int y)  {
 
@@ -34,6 +36,19 @@ public abstract class GameObject {
         this.height= this.HEIGHT/ rowCount;
     }
 
+    public GameObject() {
+    }
+
+    public GameObject(Bitmap image, int width,int height,int x, int y,int e) {
+
+
+        this.width = width;
+        this.height= height;
+        this.image = image;
+        this.x= x;
+        this.y= y;
+
+    }
 
     protected Bitmap createSubImageAt(int row, int col)  {
         // createBitmap(bitmap, x, y, width, height).

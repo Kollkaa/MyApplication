@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     android:text="@string/scrores"
     tools:context=".ScoresActivity"
-    android:orientation="horizontal">
-
+>
     <RelativeLayout
         android:id="@+id/relative_lay_scores"
         android:layout_width="match_parent"

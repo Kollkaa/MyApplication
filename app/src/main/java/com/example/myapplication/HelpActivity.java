@@ -18,13 +18,14 @@ public class HelpActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.help);
-        rl=(RelativeLayout)findViewById(R.id.relativeLayout_help);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         // Set No Title
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.help);
+        rl=(RelativeLayout)findViewById(R.id.relativeLayout_help);
+
         AnimationDrawable animationDrawable =(AnimationDrawable)rl.getBackground();
         animationDrawable.setEnterFadeDuration(5000);
         animationDrawable.setExitFadeDuration(2000);

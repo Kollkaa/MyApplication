@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:text="@string/gamefirstexr"
     tools:context=".GameFirstExrActivity"
-    android:orientation="horizontal">
+    >
 
 
     <RelativeLayout

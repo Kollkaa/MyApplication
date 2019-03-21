@@ -48,12 +48,13 @@ public class GameFirstExrActivity extends AppCompatActivity implements View.OnTo
             color = arguments.getInt("rocket_color");
             complexity=arguments.getInt("complexity");
         }
-        setContentView(R.layout.game_first_exr);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         // Set No Title
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.game_first_exr);
+
         gameView= new GameView(this,color,complexity); // создаём gameView
         text_score=(TextView)findViewById(R.id.text_score);
         gameView.addEvenListner(new MyEventListner() {

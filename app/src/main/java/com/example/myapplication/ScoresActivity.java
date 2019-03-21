@@ -50,13 +50,13 @@ public class ScoresActivity extends AppCompatActivity implements View.OnClickLis
         writeFile(arr.size(), name, scores);
       }
 
-
-      setContentView(R.layout.scores);
       this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
               WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
       // Set No Title
       this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+      setContentView(R.layout.scores);
+
       tl = (TableLayout) findViewById(R.id.tableloyught);
       rl = (RelativeLayout) findViewById(R.id.relative_lay_scores);
       AnimationDrawable animationDrawable = (AnimationDrawable) rl.getBackground();
