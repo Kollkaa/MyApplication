@@ -1,22 +1,24 @@
 package com.example.myapplication;
 import android.graphics.Bitmap;
+import android.graphics.Paint;
 
 public abstract class GameObject {
 
     protected Bitmap image;
 
-    protected int rowCount;
-    protected int colCount;
+    private Paint paint;
+    protected final int rowCount;
+    protected final int colCount;
 
-    protected int WIDTH;
-    protected int HEIGHT;
+    protected final int WIDTH;
+    protected final int HEIGHT;
 
-    protected int width;
+    protected final int width;
 
 
-    protected int height;
-    protected int x;
-    protected int y;
+    protected final int height;
+    protected  int x;
+    protected  int y;
 
 
 
@@ -35,20 +37,26 @@ public abstract class GameObject {
         this.width = this.WIDTH/ colCount;
         this.height= this.HEIGHT/ rowCount;
     }
+    public GameObject( int height, int width, int x, int y)  {
 
-    public GameObject() {
-    }
+if (x<0)
+    x=0;
+            if(y<0)
+                y=0;
+        this.rowCount= 0;
+        this.colCount= 0;
 
-    public GameObject(Bitmap image, int width,int height,int x, int y,int e) {
-
-
-        this.width = width;
-        this.height= height;
-        this.image = image;
         this.x= x;
         this.y= y;
 
+        this.WIDTH =height;
+        this.HEIGHT =width;
+
+        this.width = this.WIDTH;
+        this.height= this.HEIGHT;
     }
+
+
 
     protected Bitmap createSubImageAt(int row, int col)  {
         // createBitmap(bitmap, x, y, width, height).

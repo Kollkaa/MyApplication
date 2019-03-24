@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.AdventureWorld;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -6,14 +6,21 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Build;
+import android.os.Handler;
 import android.util.Log;
+import android.view.Display;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.WindowManager;
+import android.widget.Toast;
+
+import com.example.myapplication.R;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -29,11 +36,12 @@ int scores=0;
     private Castle castle;
     private Shop shop;
     private final List<Explosion> explosionList = new ArrayList<>();
-
+    Paint paint;
     private static final int MAX_STREAMS=100;
     private int soundIdExplosion;
     private int soundIdBackground;
-
+   private int width  ;
+    private int  height ;
     private boolean soundPoolLoaded;
     private SoundPool soundPool;
 
@@ -42,6 +50,8 @@ int scores=0;
     }
 
     public GameSurface(Context context)  {
+
+
         super(context);
 
 
@@ -51,7 +61,13 @@ int scores=0;
         // Sét callback.
         this.getHolder().addCallback(this);
 
-        this.initSoundPool();
+
+        Display display = ((WindowManager) context.getSystemService(context.WINDOW_SERVICE)).getDefaultDisplay();
+        Point p = new Point();
+        display.getSize(p);
+        width = p.x;
+        height = p.y;
+        Log.d("widthxheight",width + " " + height);
     }
 
     private void initSoundPool()  {
@@ -123,11 +139,32 @@ int scores=0;
             if( castle.getX() < x && x < castle.getX() + castle.getWidth()
                     && castle.getY() < y && y < castle.getY()+ castle.getHeight())
             {
+                Log.d("castle","ok");
+                final Toast toast = Toast.makeText(getContext(), String.valueOf("castle ok"), Toast.LENGTH_SHORT);
+                toast.show();
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        toast.cancel();
+                    }
+                }, 500);
+
                 //TODO
             }
             if ( shop.getX() < x && x < shop.getX() + shop.getWidth()
                         && shop.getY() < y && y < shop.getY()+ shop.getHeight())
             {
+                Log.d("shop","ok");
+                final Toast toast = Toast.makeText(getContext(), String.valueOf("shop ok"), Toast.LENGTH_SHORT);
+                toast.show();
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        toast.cancel();
+                    }
+                }, 500);
                 //TODO
             }
 
@@ -189,8 +226,8 @@ int scores=0;
         try {
             Paint paint = new Paint();
             paint.setColor(Color.RED);
-            paint.setTextSize(100);
-            canvas.drawText(String.valueOf(scores), 1700, 70, paint);
+            paint.setTextSize(height/15);
+            canvas.drawText(String.valueOf(scores), width-100, 100, paint);
         }
         catch (Exception e) {
             Log.e("123", "run() lockCanvas()", e);
@@ -198,13 +235,13 @@ int scores=0;
 
         }
 
-        castle.draw(canvas);
-        shop.draw(canvas);
+        castle.draw(canvas,paint);
+        shop.draw(canvas,paint);
         for(ChibiCharacter chibi: chibiList) {
             chibi.draw(canvas);
         }
         for(Tree tree: treesList) {
-            tree.draw(canvas);
+            tree.draw(canvas,paint);
         }
         for(Explosion explosion: this.explosionList)  {
             explosion.draw(canvas);
@@ -218,27 +255,23 @@ int scores=0;
     // Implements method of SurfaceHolder.Callback
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-       try {
-           Bitmap castleBitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.castle);
 
-           castle = new Castle(this, castleBitmap, 20, 200);
-           Bitmap shopBitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.shop);
-           shop = new Shop(this, castleBitmap, 1600, 150);
-       }
-       catch (Exception e)
-       {}
-       try {
+
+        castle = new Castle(this, getContext(), width, height);
+
+        shop = new Shop(this, getContext(), width, height);
+
+
            for(int i=0;i<15;i++)
            {
                Random ran=new Random();
 
-               Bitmap  tree = BitmapFactory.decodeResource(this.getResources(),R.drawable.tree);
-               Tree tree1 = new Tree(this,tree,ran.nextInt(1600),ran.nextInt(900));
+
+               Tree tree1 = new Tree(this,getContext(),width,height);
                treesList.add(tree1);
            }
-       }
-       catch (Exception e)
-       {}
+
+
         for(int i=0;i<6;i++)
        {
            Bitmap  chibiBitmap = BitmapFactory.decodeResource(this.getResources(),R.drawable.chibi1);

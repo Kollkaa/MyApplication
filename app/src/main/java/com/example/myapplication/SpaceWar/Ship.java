@@ -1,7 +1,11 @@
-package com.example.myapplication;
+package com.example.myapplication.SpaceWar;
+
 import android.content.Context;
 
-class Ship extends SpaceBody {
+import com.example.myapplication.GameFirstExrActivity;
+import com.example.myapplication.R;
+
+public class Ship extends SpaceBody {
     public Ship(Context context) {
         bitmapId = R.drawable.player; // определяем начальные параметры
         size = 15f;

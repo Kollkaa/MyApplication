@@ -1,6 +1,9 @@
-package com.example.myapplication;
+package com.example.myapplication.SpaceWar;
 
 import android.content.Context;
+
+import com.example.myapplication.R;
+import com.example.myapplication.SpaceBody;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -9,7 +12,7 @@ import java.util.Random;
 import ADD.MyEventListner;
 import ADD.isColision;
 
-public class Asteroid extends SpaceBody{
+public class Asteroid extends SpaceBody {
     private int radius = 5;
     // радиус
     private float minSpeed = (float) 0.1; // минимальная скорость

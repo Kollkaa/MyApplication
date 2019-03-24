@@ -1,7 +1,9 @@
-package com.example.myapplication;
+package com.example.myapplication.AdventureWorld;
 
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
+
+import com.example.myapplication.GameSurface;
 
 public class GameThread extends Thread {
 

@@ -1,6 +1,8 @@
-package com.example.myapplication;
+package com.example.myapplication.SpaceWar;
 
 import android.content.Context;
+
+import com.example.myapplication.R;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -29,7 +31,7 @@ public class Rocket extends SpaceBody{
     int re=random.nextInt(3);
 switch (rocket_color){
     case 1:
-        bitmapId=R.drawable.lazer;
+        bitmapId= R.drawable.lazer;
         break;
         case 2:
                 bitmapId=R.drawable.rocket_blue;

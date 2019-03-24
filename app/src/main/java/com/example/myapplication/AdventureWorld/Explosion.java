@@ -1,7 +1,9 @@
-package com.example.myapplication;
+package com.example.myapplication.AdventureWorld;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+
+import com.example.myapplication.GameObject;
 
 public class Explosion extends GameObject {
 

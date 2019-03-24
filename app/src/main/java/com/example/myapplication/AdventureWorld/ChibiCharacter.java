@@ -1,8 +1,10 @@
-package com.example.myapplication;
+package com.example.myapplication.AdventureWorld;
 
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+
+import com.example.myapplication.GameObject;
 
 public class ChibiCharacter extends GameObject {
 
@@ -22,7 +24,7 @@ public class ChibiCharacter extends GameObject {
     private Bitmap[] bottomToTops;
 
     // Velocity of game character (pixel/millisecond)
-    public static final float VELOCITY = 0.1f;
+    public static final float VELOCITY = 0.1f;//SPEED
 
     private int movingVectorX = 10;
     private int movingVectorY = 5;

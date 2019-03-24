@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.SpaceWar;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -18,6 +18,11 @@ public class SpaceBody {
     }
 
     protected float y;
+
+    public float getSize() {
+        return size;
+    }
+
     protected float size; // размер
     protected float speed; // скорость
     protected int bitmapId; // id картинки

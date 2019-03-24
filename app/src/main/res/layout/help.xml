@@ -28,16 +28,15 @@
                 android:layout_height="74dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginStart="17dp"
-                android:layout_marginTop="100dp"
-                android:layout_marginEnd="172dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
                 android:fontFamily="casual"
                 android:text="@string/text_helps"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="24sp"
+                app:layout_constraintBottom_toTopOf="@+id/menu_help"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -65,9 +64,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="52dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginBottom="63dp"
                 android:background="@drawable/splash_btn_grad"
                 android:onClick="onClick"
                 android:text="Назад"
@@ -76,7 +73,7 @@
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.501"
+                app:layout_constraintHorizontal_bias="0.473"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView"
                 app:layout_constraintVertical_bias="1.0" />
@@ -86,16 +83,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 android:text="Підтримка"
                 android:textSize="30sp"
                 app:layout_constraintBottom_toTopOf="@+id/textView"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.482"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.726" />
+                app:layout_constraintVertical_bias="0.172" />
 
             <android.support.constraint.Guideline
                 android:id="@+id/guideline2"

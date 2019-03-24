@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.SpaceWar;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -65,7 +65,7 @@ public class GameView extends SurfaceView implements Runnable{
     public void setPresed(){
         try {
 
-            Rocket rocket = new Rocket(getContext(), ship.x, ship.y,rocket_color);
+            Rocket rocket = new Rocket(getContext(), ship.getX(), ship.getY(),rocket_color);
             rocket.addEvenListner(new MyEventListner() {
                 @Override
                 public void processEvent(isColision event)  {
@@ -122,7 +122,7 @@ public class GameView extends SurfaceView implements Runnable{
             try {
                 for (Asteroid asteroid : asteroids) {
                     asteroid.update();
-                    if (asteroid.y > ship.y) {
+                    if (asteroid.getY() > ship.getY()) {
                         asteroid.notifyEvenListner(new isColision(asteroid, isColision.Type.AsteroidColision));
                         remove_asteroids.add(asteroid);}
 
@@ -131,7 +131,7 @@ public class GameView extends SurfaceView implements Runnable{
             try {
                 for (Rocket rocket : rockets) {
                     rocket.update();
-                       if (rocket.y < 0) {
+                       if (rocket.getY() < 0) {
                            rocket.notifyEvenListner(new isColision(rocket, isColision.Type.RocketColision));
                            remove_rocket.add(rocket);
                       }
@@ -186,7 +186,7 @@ public class GameView extends SurfaceView implements Runnable{
     private void checkCollision() throws IOException { // перебираем все астероиды и проверяем не касается ли один из них корабля
 
         for (Asteroid asteroid : asteroids) {
-            if(asteroid.isCollision(ship.x, ship.y, ship.size)){// игрок проиграл
+            if(asteroid.isCollision(ship.getX(), ship.getY(), ship.getSize())){// игрок проиграл
                 asteroid.notifyEvenListner(new isColision(asteroid,isColision.Type.ShipColision));
                 notifyEvenListner(new isColision(this,isColision.Type.ShipColision));
                 gameRunning = false; // останавливаем игру
@@ -197,7 +197,7 @@ public class GameView extends SurfaceView implements Runnable{
            try {
                for(Rocket rocket:rockets)
                {
-                   if (rocket.isCollision(asteroid.x,asteroid.y,asteroid.size)) {
+                   if (rocket.isCollision(asteroid.getX(),asteroid.getY(),asteroid.getSize())) {
 
                        asteroid.notifyEvenListner(new isColision(asteroid, isColision.Type.AsteroidColision));
                        rocket.notifyEvenListner(new isColision(rocket, isColision.Type.RocketColision));
