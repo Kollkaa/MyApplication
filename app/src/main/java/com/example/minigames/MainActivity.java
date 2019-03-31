@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.minigames;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,11 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Toast;
+
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 Intent intent;
@@ -23,7 +28,16 @@ Intent intent;
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         setContentView(R.layout.activity_main);
+        try(BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
+                openFileOutput("scores_space_war", MODE_APPEND)));
+            BufferedWriter bw1 = new BufferedWriter(new OutputStreamWriter(
+                    openFileOutput("scores_adventure_world", MODE_APPEND)));) {
 
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 

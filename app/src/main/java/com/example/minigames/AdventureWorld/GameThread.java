@@ -1,9 +1,9 @@
-package com.example.myapplication.AdventureWorld;
+package com.example.minigames.AdventureWorld;
 
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
-import com.example.myapplication.GameSurface;
+
 
 public class GameThread extends Thread {
 

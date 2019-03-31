@@ -1,9 +1,9 @@
-package com.example.myapplication.SpaceWar;
+package com.example.minigames.SpaceWar;
 
 import android.content.Context;
 
-import com.example.myapplication.R;
-import com.example.myapplication.SpaceBody;
+import com.example.minigames.R;
+
 
 import java.util.LinkedList;
 import java.util.List;
@@ -20,7 +20,6 @@ public class Asteroid extends SpaceBody {
     private List<MyEventListner> myEventListners =new LinkedList<>();
 
 
-
     public void addEvenListner(MyEventListner myEventListner)
     { myEventListners.add(myEventListner);}
     public void notifyEvenListner(isColision isColision)
@@ -29,18 +28,20 @@ public class Asteroid extends SpaceBody {
         {myevent.processEvent(isColision);}
     }
 
-    public Asteroid(Context context,int complexity) {
+    public Asteroid(Context context,int complexity,int wid,int hei) {
           hp=1;
+        this.wid=wid;
+        this.hei=hei;
      Random random = new Random();
      switch (complexity)
         {
             case 1:
-                speed=(float) 0.334*3f;
+                speed= 10;
                 break;
             case 2:
-                speed=(float) 0.543*3f;
+                speed=15;
             case 3:
-                speed=(float) 0.7123123*3f;
+                speed=20;
                 break;
         }
 int re=random.nextInt(3);
@@ -59,10 +60,10 @@ int re=random.nextInt(3);
        else
            bitmapId=R.drawable.asteroid;
         y=0;
-        x = random.nextInt(GameView.maxX) - radius;
+        x = random.nextInt(wid) - size;
         int r=random.nextInt(5);
 if(r>0) {
-    size = radius * r;
+    size = 15 *r;
     hp=r;
 }
 else
@@ -78,7 +79,7 @@ else
 
     }
 
-    public boolean isCollision(float shipX, float shipY, float shipSize) {
-        return !(((x+size) < shipX)||(x > (shipX+shipSize))||((y+size) < shipY)||(y > (shipY+shipSize)));
+    public boolean isCollision(Ship ship) {
+        return !(((x+bitmap.getWidth()) < ship.getX())||(x > (ship.getX()+ship.bitmap.getWidth()))||((y+bitmap.getHeight()) < ship.getY())||(y > (ship.getY()+ship.bitmap.getHeight())));
     }
 }

@@ -1,12 +1,15 @@
-package com.example.myapplication.SpaceWar;
+package com.example.minigames.SpaceWar;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.util.Log;
+import android.view.Display;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.WindowManager;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,6 +25,18 @@ public class GameView extends SurfaceView implements Runnable{
     public static int maxY = 100; // размер по вертикали
     public static float unitW = 0; // пикселей в юните по горизонтали
     public static float unitH = 0; // пикселей в юните по вертикали
+
+
+
+    public static int getWidth1() {
+        return width1;
+    }
+
+    public static int getHeight1() {
+        return height1;
+    }
+    private static int width1=0;
+    private static int height1=0;
     private boolean firstTime = true;
     private boolean gameRunning = true;
     private Ship ship;
@@ -57,6 +72,12 @@ public class GameView extends SurfaceView implements Runnable{
         surfaceHolder = getHolder();
         paint = new Paint();
         // инициализируем поток
+        Display display = ((WindowManager) context.getSystemService(context.WINDOW_SERVICE)).getDefaultDisplay();
+        Point p = new Point();
+        display.getSize(p);
+        width1 = p.x;
+        height1 = p.y;
+        Log.d("width x height",width1 + " " + height1);
         gameThread = new Thread(this);
         gameThread.start();
         this.rocket_color=rocket_color;
@@ -65,7 +86,7 @@ public class GameView extends SurfaceView implements Runnable{
     public void setPresed(){
         try {
 
-            Rocket rocket = new Rocket(getContext(), ship.getX(), ship.getY(),rocket_color);
+            Rocket rocket = new Rocket(getContext(),rocket_color,ship,getWidth1(),getHeight1());
             rocket.addEvenListner(new MyEventListner() {
                 @Override
                 public void processEvent(isColision event)  {
@@ -146,7 +167,7 @@ public class GameView extends SurfaceView implements Runnable{
                    firstTime = false;
                    unitW = surfaceHolder.getSurfaceFrame().width() / maxX; // вычисляем число пикселей в юните
                    unitH = surfaceHolder.getSurfaceFrame().height() / maxY;
-                   ship = new Ship(getContext()); // добавляем корабль
+                   ship = new Ship(getContext(),getWidth1(),getHeight1()); // добавляем корабль
                }
                canvas = surfaceHolder.lockCanvas(); // закрываем canvas
               try {
@@ -186,7 +207,7 @@ public class GameView extends SurfaceView implements Runnable{
     private void checkCollision() throws IOException { // перебираем все астероиды и проверяем не касается ли один из них корабля
 
         for (Asteroid asteroid : asteroids) {
-            if(asteroid.isCollision(ship.getX(), ship.getY(), ship.getSize())){// игрок проиграл
+            if(asteroid.isCollision(ship)){// игрок проиграл
                 asteroid.notifyEvenListner(new isColision(asteroid,isColision.Type.ShipColision));
                 notifyEvenListner(new isColision(this,isColision.Type.ShipColision));
                 gameRunning = false; // останавливаем игру
@@ -197,7 +218,7 @@ public class GameView extends SurfaceView implements Runnable{
            try {
                for(Rocket rocket:rockets)
                {
-                   if (rocket.isCollision(asteroid.getX(),asteroid.getY(),asteroid.getSize())) {
+                   if (rocket.isCollision(asteroid)) {
 
                        asteroid.notifyEvenListner(new isColision(asteroid, isColision.Type.AsteroidColision));
                        rocket.notifyEvenListner(new isColision(rocket, isColision.Type.RocketColision));
@@ -225,7 +246,7 @@ public class GameView extends SurfaceView implements Runnable{
     private void checkIfNewAsteroid(){ // каждые 50 итераций добавляем новый астероид
         if(currentTime >= ASTEROID_INTERVAL){
             Random random=new Random();
-            Asteroid asteroid = new Asteroid(getContext(),complexity);
+            Asteroid asteroid = new Asteroid(getContext(),complexity,getWidth1(),getHeight1());
             asteroid.addEvenListner(new MyEventListner() {
                 @Override
                 public void processEvent(isColision event)  {

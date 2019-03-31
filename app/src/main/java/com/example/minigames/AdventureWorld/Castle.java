@@ -1,4 +1,4 @@
-package com.example.myapplication.AdventureWorld;
+package com.example.minigames.AdventureWorld;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -7,8 +7,8 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.Log;
 
-import com.example.myapplication.GameObject;
-import com.example.myapplication.R;
+import com.example.minigames.GameObject;
+import com.example.minigames.R;
 
 public class Castle extends GameObject {
     private GameSurface gameSurface;

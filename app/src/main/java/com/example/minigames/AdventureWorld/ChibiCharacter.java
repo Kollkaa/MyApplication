@@ -1,10 +1,10 @@
-package com.example.myapplication.AdventureWorld;
+package com.example.minigames.AdventureWorld;
 
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
-import com.example.myapplication.GameObject;
+import com.example.minigames.GameObject;
 
 public class ChibiCharacter extends GameObject {
 

@@ -9,9 +9,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 
-import com.example.myapplication.GameFirstExrActivity;
-import com.example.myapplication.MenuActivity;
-import com.example.myapplication.ScoresActivity;
+import com.example.minigames.GameFirstExrActivity;
+import com.example.minigames.MenuActivity;
+import com.example.minigames.ScoresActivity;
 
 public class CustomDialogFragment extends DialogFragment {
 
@@ -31,13 +31,13 @@ public class CustomDialogFragment extends DialogFragment {
 
 
         final String name = getArguments().getString("name");
-
+final String type_game=getArguments().getString("type_game");
         final int scores = getArguments().getInt("scores");
         final AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
         return builder
-                .setTitle("Ви програли\n ваш результат "+name+" "+scores)
+                .setTitle("Ви програли\n ваш результат "+name+":- "+scores)
                 .setIcon(android.R.drawable.ic_dialog_alert)
-                .setMessage("Ви бажаєте переглянути таблицю "+"\n або продовжити"+ "?")
+                .setMessage("\nВи бажаєте переглянути таблицю "+"\n або продовжити"+ "?")
                 .setPositiveButton("Переглянути минулі результати", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -46,15 +46,24 @@ public class CustomDialogFragment extends DialogFragment {
                         intent.putExtra("name",name);
                                 intent.putExtra("scores",scores);
                                 intent.putExtra("activity",1);
+                                intent.putExtra("type_game",type_game);
                         startActivity(intent);
                     }
                 })
                 .setNegativeButton("Продовжити", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(getActivity(), GameFirstExrActivity.class);
+                        Intent intent;
+                     if(type_game=="scores_space_war") {
+                         intent = new Intent(getActivity(), GameFirstExrActivity.class);
+                         startActivity(intent);
 
-                    startActivity(intent);
+                     }
+                     if (type_game=="scores_adventure_world") {
+                          intent = new Intent(getActivity(), GameFirstExrActivity.class);
+                         startActivity(intent);
+                        }
+
                         contunie=true;
                     }
                 })

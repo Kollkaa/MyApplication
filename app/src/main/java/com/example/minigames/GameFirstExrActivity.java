@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.minigames;
 
 
 import android.content.Intent;
@@ -15,7 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.myapplication.SpaceWar.GameView;
+import com.example.minigames.SpaceWar.GameView;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -40,7 +40,7 @@ public class GameFirstExrActivity extends AppCompatActivity implements View.OnTo
     TextView text_score;
     int color=1;
     int complexity=1;
-    final  String  FILENAME = "scores";
+    final  String  FILENAME = "scores_space_war";
     ArrayList<String> arr=new ArrayList<>();
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -72,7 +72,7 @@ public class GameFirstExrActivity extends AppCompatActivity implements View.OnTo
                         Bundle args = new Bundle();
                         args.putString("name", "kolia");
                         args.putInt("scores",score);
-
+                        args.putString("type_game","scores_space_war");
                         dialog.setArguments(args);
                         try {
                                        dialog.show(getSupportFragmentManager(), "custom");
@@ -84,9 +84,10 @@ public class GameFirstExrActivity extends AppCompatActivity implements View.OnTo
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                        readFile();
-                        writeFile(arr.size(), "kolia", score);
-
+                        if (!dialog.getToScores()) {
+                            readFile();
+                            writeFile(arr.size(), "kolia", score);
+                        }
                         break;
                     case RocketKillAsteroid: {
                         Log.d("Rocket", "kill Asteroid");
@@ -102,11 +103,9 @@ public class GameFirstExrActivity extends AppCompatActivity implements View.OnTo
 
         RelativeLayout gameLayout = (RelativeLayout) findViewById(R.id.relative_startgame); // находим gameLayout
         gameLayout.addView(gameView); // и добавляем в него gameView
-        Button leftButton = (Button) findViewById(R.id.left); // находим кнопки
-        Button rightButton = (Button) findViewById(R.id.right);
+
         Button attackButton=(Button)findViewById(R.id.attack) ;
-        leftButton.setOnTouchListener(this); // и добавляем этот класс как слушателя (при нажатии сработает onTouch)
-        rightButton.setOnTouchListener(this);
+
         attackButton.setOnTouchListener(this);
 
 
@@ -195,7 +194,7 @@ public class GameFirstExrActivity extends AppCompatActivity implements View.OnTo
             bw.flush();
             // закрываем поток
             bw.close();
-            Log.d("my log", "Файл записан");
+            Log.d("my log", "Файл записан"+FILENAME);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

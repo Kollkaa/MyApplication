@@ -1,8 +1,8 @@
-package com.example.myapplication.SpaceWar;
+package com.example.minigames.SpaceWar;
 
 import android.content.Context;
 
-import com.example.myapplication.R;
+import com.example.minigames.R;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -12,9 +12,9 @@ import ADD.MyEventListner;
 import ADD.isColision;
 
 public class Rocket extends SpaceBody{
-  private int radius = 3; // радиус
-  private float minSpeed = (float) 0.1; // минимальная скорость
-  private float maxSpeed = (float) radius/2; // максимальная скорость
+
+  private static int minSpeed =  10; // минимальная скорость
+
   private List<MyEventListner> myEventListners =new LinkedList<>();
 
 
@@ -26,8 +26,11 @@ public class Rocket extends SpaceBody{
     for (MyEventListner myevent: myEventListners)
     {myevent.processEvent(isColision);}
   }
-  public Rocket(Context context,float shipX,float shipY,int rocket_color ) {
+
+  public Rocket(Context context,int rocket_color,Ship ship,int wid,int hei ) {
     Random random = new Random();
+      this.wid=wid;
+      this.hei=hei;
     int re=random.nextInt(3);
 switch (rocket_color){
     case 1:
@@ -41,12 +44,12 @@ switch (rocket_color){
 }
 
 
-    y=shipY;
-    x = shipX+7.5f;
+    y=ship.getY();
+    x = ship.getX()+((ship.bitmap.getWidth()/2)-(ship.bitmap.getWidth()%2));
 
-      size = radius*1;
+      size =30;
 
-    speed = maxSpeed;
+    speed = minSpeed;
 
     init(context);
   }
@@ -57,7 +60,7 @@ switch (rocket_color){
 
   }
 
-  public boolean isCollision(float asteroidX, float asteroidY, float asteroidsize) {
-    return !(((x+size) < asteroidX)||(x > (asteroidX+asteroidsize))||((y+size) < asteroidY)||(y > (asteroidY+asteroidsize)));
+  public boolean isCollision(Asteroid asteroid) {
+    return !(((x+bitmap.getWidth()) < asteroid.getX())||(x > (asteroid.getX()+asteroid.bitmap.getWidth()))||((y+bitmap.getHeight()) < asteroid.getY())||(y > (asteroid.getY()+asteroid.bitmap.getHeight())));
   }
 }

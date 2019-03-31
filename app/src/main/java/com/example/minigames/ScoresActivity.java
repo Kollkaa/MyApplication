@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.minigames;
 
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
@@ -27,9 +27,9 @@ import java.util.ArrayList;
 
 
 public class ScoresActivity extends AppCompatActivity implements View.OnClickListener  {
-  final String LOG_TAG = "myLogs";
-  final  String  FILENAME = "scores";
-  ArrayList<String> arr=new ArrayList<>();
+  private final String LOG_TAG = "myLogs";
+  private String  FILENAME = "";
+  private ArrayList<String> arr=new ArrayList<>();
   private TextView mSelectText;
   RelativeLayout rl;
   TableLayout tl;
@@ -41,8 +41,10 @@ public class ScoresActivity extends AppCompatActivity implements View.OnClickLis
     try {
       Bundle arguments = getIntent().getExtras();
       String name = "";
+      FILENAME=arguments.getString("type_game");
       int scores = 0;
       readFile();
+
       if (arguments.getInt("activity")==1)
       if (arguments != null) {
         name = arguments.getString("name");
@@ -96,7 +98,7 @@ public class ScoresActivity extends AppCompatActivity implements View.OnClickLis
       bw.flush();
       // закрываем поток
       bw.close();
-      Log.d(LOG_TAG, "Файл записан");
+      Log.d(LOG_TAG, "Файл записан"+FILENAME);
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     } catch (IOException e) {

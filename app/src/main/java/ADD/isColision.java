@@ -15,7 +15,7 @@ public class isColision extends EventObject {
                 super(source);
     this.type=type;
     }
-    public enum Type{ShipColision,RocketColision,AsteroidColision,RocketKillAsteroid}
+    public enum Type{ShipColision,RocketColision,AsteroidColision,RocketKillAsteroid,ChibiKilled,AllChebiKilled}
 
     public Type getType() {  return type;   }
 

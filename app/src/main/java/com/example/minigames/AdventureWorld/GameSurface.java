@@ -1,4 +1,4 @@
-package com.example.myapplication.AdventureWorld;
+package com.example.minigames.AdventureWorld;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -20,12 +20,16 @@ import android.view.SurfaceView;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.example.myapplication.R;
+import com.example.minigames.R;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+
+import ADD.MyEventListner;
+import ADD.isColision;
 
 public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
 int scores=0;
@@ -44,11 +48,17 @@ int scores=0;
     private int  height ;
     private boolean soundPoolLoaded;
     private SoundPool soundPool;
-
+    private List<MyEventListner> myEventListners =new LinkedList<>();
     public List<ChibiCharacter> getChibiList() {
         return chibiList;
     }
-
+    public void addEvenListner(MyEventListner myEventListner)
+    { myEventListners.add(myEventListner);}
+    public void notifyEvenListner(isColision isColision)
+    {
+        for (MyEventListner myevent: myEventListners)
+        {myevent.processEvent(isColision);}
+    }
     public GameSurface(Context context)  {
 
 
@@ -67,7 +77,7 @@ int scores=0;
         display.getSize(p);
         width = p.x;
         height = p.y;
-        Log.d("widthxheight",width + " " + height);
+        Log.d("width x height",width + " " + height);
     }
 
     private void initSoundPool()  {
@@ -196,6 +206,7 @@ int scores=0;
 
     public void update()  {
 
+
         for(ChibiCharacter chibi: chibiList) {
             chibi.update();
 
@@ -211,6 +222,7 @@ int scores=0;
 
             if(explosion.isFinish()) {
                 scores++;
+                notifyEvenListner(new isColision(this,isColision.Type.ChibiKilled));
                 Log.d("scores",""+scores);
 
                 // If explosion finish, Remove the current element from the iterator & list.
@@ -218,6 +230,8 @@ int scores=0;
 
             }
         }
+        if(chibiList.size()==0||chibiList==null)
+            notifyEvenListner(new isColision(this,isColision.Type.AllChebiKilled));
     }
 
     @Override

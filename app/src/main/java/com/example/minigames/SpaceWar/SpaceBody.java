@@ -1,4 +1,4 @@
-package com.example.myapplication.SpaceWar;
+package com.example.minigames.SpaceWar;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -28,10 +28,11 @@ public class SpaceBody {
     protected int bitmapId; // id картинки
     protected Bitmap bitmap; // картинка
     protected int hp;
+    int wid, hei;
     public void init(Context context) { // сжимаем картинку до нужных размеров
         Bitmap cBitmap = BitmapFactory.decodeResource(context.getResources(), bitmapId);
         bitmap = Bitmap.createScaledBitmap(
-                cBitmap, (int) (size * GameView.unitW), (int) (size * GameView.unitH), false);
+                cBitmap, (int) (wid/size), (int) (hei/size), false);
         cBitmap.recycle();
     }
 
@@ -39,6 +40,6 @@ public class SpaceBody {
     }
 
    public void drow(Paint paint, Canvas canvas) { // рисуем картинку
-        canvas.drawBitmap(bitmap, x * GameView.unitW, y * GameView.unitH, paint);
+        canvas.drawBitmap(bitmap, x, y, paint);
     }
 }

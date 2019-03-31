@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.minigames.AdventureWorld;
 import android.graphics.Bitmap;
 import android.graphics.Paint;
 

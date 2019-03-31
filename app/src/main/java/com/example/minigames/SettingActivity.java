@@ -1,8 +1,7 @@
-package com.example.myapplication;
+package com.example.minigames;
 
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,7 +11,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.RelativeLayout;
 
-public class HelpActivity extends AppCompatActivity implements View.OnClickListener {
+
+public class SettingActivity extends AppCompatActivity implements View.OnClickListener{
     RelativeLayout rl;
 
     @Override
@@ -23,28 +23,26 @@ public class HelpActivity extends AppCompatActivity implements View.OnClickListe
 
         // Set No Title
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.help);
-        rl=(RelativeLayout)findViewById(R.id.relativeLayout_help);
+        setContentView(R.layout.setting);
 
+        rl=(RelativeLayout)findViewById(R.id.relative_lay_setting);
         AnimationDrawable animationDrawable =(AnimationDrawable)rl.getBackground();
         animationDrawable.setEnterFadeDuration(5000);
         animationDrawable.setExitFadeDuration(2000);
         animationDrawable.start();
+
     }
 
 
     @Override
     public void onClick(View v) {
-        Animation animation= AnimationUtils.loadAnimation(HelpActivity.this,R.anim.sample_anim);
+        Animation animation= AnimationUtils.loadAnimation(SettingActivity.this,R.anim.sample_anim);
         v.startAnimation(animation);
         switch (v.getId()) {
-            case R.id.hyper_adress:
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com")));
-                break;
-            case R.id.menu_help:
+            case R.id.menu_setting:
                 Intent intent = new Intent(this, MenuActivity.class);
                 startActivity(intent);
-                closeActivity();
+
 
 
                 break;
@@ -53,7 +51,8 @@ public class HelpActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void closeActivity() {
-        this.finish();
-    }
+
+
+
+
 }

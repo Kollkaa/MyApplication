@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.myapplication">
+    package="com.example.minigames">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -13,8 +13,8 @@
         android:screenOrientation="landscape"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".ChibiActivity"></activity>
-        <activity android:name=".MainActivity">
+        <activity android:name="com.example.minigames.ChibiActivity"></activity>
+        <activity android:name="com.example.minigames.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,25 +22,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SplashActivity"
+            android:name="com.example.minigames.SplashActivity"
             android:label="ater1312" />
         <activity
-            android:name=".GameActivity"
+            android:name="com.example.minigames.GameActivity"
             android:label="Space War" />
         <activity
-            android:name=".HelpActivity"
+            android:name="com.example.minigames.HelpActivity"
             android:label="Підтримка" />
         <activity
-            android:name=".MenuActivity"
+            android:name="com.example.minigames.MenuActivity"
             android:label="Меню" />
         <activity
-            android:name=".ScoresActivity"
+            android:name="com.example.minigames.ScoresActivity"
             android:label="Досягнення" />
         <activity
-            android:name=".SettingActivity"
+            android:name="com.example.minigames.SettingActivity"
             android:label="Налаштування" />
         <activity
-            android:name=".GameFirstExrActivity"
+            android:name="com.example.minigames.GameFirstExrActivity"
             android:label="Space War" />
     </application>
 
