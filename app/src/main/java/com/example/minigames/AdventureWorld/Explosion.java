@@ -3,7 +3,7 @@ package com.example.minigames.AdventureWorld;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
-import com.example.minigames.GameObject;
+
 
 public class Explosion extends GameObject {
 

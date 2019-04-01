@@ -7,7 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.Log;
 
-import com.example.minigames.GameObject;
+
 import com.example.minigames.R;
 
 public class Castle extends GameObject {

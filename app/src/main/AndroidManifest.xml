@@ -13,8 +13,9 @@
         android:screenOrientation="landscape"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name="com.example.minigames.ChibiActivity"></activity>
-        <activity android:name="com.example.minigames.MainActivity">
+        <activity android:name=".FlipActivity"></activity>
+        <activity android:name=".ChibiActivity" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,25 +23,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.minigames.SplashActivity"
+            android:name=".SplashActivity"
             android:label="ater1312" />
         <activity
-            android:name="com.example.minigames.GameActivity"
+            android:name=".GameActivity"
             android:label="Space War" />
         <activity
-            android:name="com.example.minigames.HelpActivity"
+            android:name=".HelpActivity"
             android:label="Підтримка" />
         <activity
-            android:name="com.example.minigames.MenuActivity"
+            android:name=".MenuActivity"
             android:label="Меню" />
         <activity
-            android:name="com.example.minigames.ScoresActivity"
+            android:name=".ScoresActivity"
             android:label="Досягнення" />
         <activity
-            android:name="com.example.minigames.SettingActivity"
+            android:name=".SettingActivity"
             android:label="Налаштування" />
         <activity
-            android:name="com.example.minigames.GameFirstExrActivity"
+            android:name=".GameFirstExrActivity"
             android:label="Space War" />
     </application>
 

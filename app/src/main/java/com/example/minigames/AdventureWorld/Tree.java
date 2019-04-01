@@ -6,7 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
-import com.example.minigames.GameObject;
+
 
 import com.example.minigames.R;
 
