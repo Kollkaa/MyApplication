@@ -113,6 +113,13 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 intent.putExtra("complexity", this.complexity);
                 startActivity(intent);
                 break;
+
+            case R.id.start_game3:
+                intent = new Intent(this, FlipActivity.class);
+                intent.putExtra("rocket_color", this.color);
+                intent.putExtra("complexity", this.complexity);
+                startActivity(intent);
+                break;
                             default:
                 break;
         }

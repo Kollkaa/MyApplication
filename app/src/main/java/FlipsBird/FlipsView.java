@@ -20,10 +20,14 @@ import java.util.Random;
 import ADD.MyEventListner;
 import ADD.isColision;
 
-import static com.example.minigames.SpaceWar.GameView.getHeight1;
-import static com.example.minigames.SpaceWar.GameView.getWidth1;
-
 public class FlipsView  extends SurfaceView implements Runnable {
+    public static int getWidth1() {
+        return width1;
+    }
+
+    public static int getHeight1() {
+        return height1;
+    }
     private static int width1 = 0;
     private static int height1 = 0;
     private boolean firstTime = true;

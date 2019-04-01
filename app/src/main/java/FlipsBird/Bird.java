@@ -20,8 +20,8 @@ public class Bird extends Object_Flip
             this.hei=hei;
             bitmapId = R.drawable.player; // определяем начальные параметры
             size = 10;
-            x=wid/2;
-            y=hei-(hei/7)-100 ;
+            x=100;
+            y=hei/2 ;
             jump_strong=10;
 
             init(context); // инициализируем корабль
